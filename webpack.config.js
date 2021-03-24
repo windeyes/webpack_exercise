@@ -1,5 +1,5 @@
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry:'./src/textDemo.js',
   mode:'development',
@@ -30,4 +30,10 @@ module.exports = {
       }
     ],
   },
+  plugins: [
+    //创建一份空文件，并自动引入打包资源
+    new HtmlWebpackPlugin({
+      template:'src/index.html' //将该文件复制一份，并自动引入打包资源
+    })
+  ],
 }
