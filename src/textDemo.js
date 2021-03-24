@@ -11,4 +11,5 @@
 // console.log(it.next());
 // console.log(it.next());
 // console.log(it.next());
+import css from "./text.css";
 console.log(process.env.NODE_ENV);
