@@ -13,4 +13,7 @@
 // console.log(it.next());
 import css from "./text.css";
 import text1less from './text1.less'
+let myfn = ()=>{
+  console.log(myFn);
+}
 console.log(process.env.NODE_ENV);
