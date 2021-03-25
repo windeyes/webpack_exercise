@@ -10,12 +10,14 @@ module.exports = {
     path:path.resolve(__dirname, 'dist'),
     filename:'js/bundle.js',
     clean:true,
-    assetModuleFilename: 'asstes/[hash][ext][query]'
+    assetModuleFilename: 'asstes/[hash][ext][query]',
+    // publicPath: '../assets'
   },
   plugins: [
     //创建一份空文件，并自动引入打包资源
     new HtmlWebpackPlugin({
-      template:'src/index.html' //将该文件复制一份，并自动引入打包资源
+      template:'src/index.html', //将该文件复制一份，并自动引入打包资源
+      minify:true
     }),
     new MiniCssExtractPlugin({
       filename:'css/main.css'
@@ -40,7 +42,12 @@ module.exports = {
       {
         test: /\.less$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+            },
+          },
           // "style-loader",
           "css-loader",
           {
