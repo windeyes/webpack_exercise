@@ -41,4 +41,11 @@ module.exports = {
       template:'src/index.html' //将该文件复制一份，并自动引入打包资源
     })
   ],
+  devServer:{
+    contentBase: path.join(__dirname, 'dist'),
+    // 启动gzip压缩
+    compress: true,
+    open:true,
+    port:'8011'
+  }
 }
