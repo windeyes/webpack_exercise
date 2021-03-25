@@ -5,6 +5,8 @@ body div {
   background-image: url('../asstes/bizhi.jpg');
   background-size: contain;
   background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  display: flex;
 }
 p {
   font-size: 28px;
