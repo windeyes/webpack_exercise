@@ -5,7 +5,9 @@ module.exports = {
   mode:'development',
   output:{
     path:path.resolve(__dirname, 'dist'),
-    filename:'bundle.js'
+    filename:'js/bundle.js',
+    clean:true,
+    assetModuleFilename: 'asstes/[hash][ext][query]'
   },
   module: {
     rules: [
