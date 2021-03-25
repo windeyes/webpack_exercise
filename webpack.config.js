@@ -1,6 +1,7 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');//导出css
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');//压缩css
 // process.env.NODE_ENV='development' //设置为开发环境
 module.exports = {
   entry:'./src/textDemo.js',
@@ -62,7 +63,12 @@ module.exports = {
       
     ],
   },
- 
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
   
   devServer:{
     contentBase: path.join(__dirname, 'dist'),
