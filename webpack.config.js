@@ -3,6 +3,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');//导出css
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');//压缩css
 // process.env.NODE_ENV='development' //设置为开发环境
+const commonPostCss = {
+    loader: "postcss-loader",
+    options:{
+      postcssOptions:{plugins:["postcss-preset-env"]}
+    }
+  }
+const commonMiniCssExtractPlugin = {
+  loader: MiniCssExtractPlugin.loader,
+  options: {
+    publicPath: '../',
+  },
+}
 module.exports = {
   entry:'./src/textDemo.js',
   mode:'development',
@@ -28,34 +40,19 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          commonMiniCssExtractPlugin,
           // "style-loader", //创建style标签
           "css-loader",//将css变成commonjs
-          {
-            loader: "postcss-loader",
-            options:{
-              postcssOptions:{plugins:["postcss-preset-env"]}
-            }
-          }
+          commonPostCss
         ],
       },
       {
         test: /\.less$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-            },
-          },
+          commonMiniCssExtractPlugin,
           // "style-loader",
           "css-loader",
-          {
-            loader: "postcss-loader",
-            options:{
-              postcssOptions:{plugins:["postcss-preset-env"]}
-            }
-          },
+          commonPostCss,
           "less-loader"
         ],
       },
