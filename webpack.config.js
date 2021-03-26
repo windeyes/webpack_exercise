@@ -16,7 +16,11 @@ const commonMiniCssExtractPlugin = {
   },
 }
 module.exports = {
-  entry:'./src/textDemo.js',
+  target:'web',
+  entry:[
+    './src/textDemo.js',
+    './src/index.html' //开启hmr后需要再做引入才能使页面热更新
+  ],
   mode:'development',
   output:{
     path:path.resolve(__dirname, 'dist'),
@@ -33,7 +37,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename:'css/main.css'
-    })
+    }),
   ],
   module: {
     rules: [
@@ -49,8 +53,8 @@ module.exports = {
       {
         test: /\.less$/i,
         use: [
-          commonMiniCssExtractPlugin,
-          // "style-loader",
+          // commonMiniCssExtractPlugin,
+          "style-loader",
           "css-loader",
           commonPostCss,
           "less-loader"
@@ -87,9 +91,11 @@ module.exports = {
   
   devServer:{
     contentBase: path.join(__dirname, 'dist'),
-    // 启动gzip压缩
+    // 启动gzip压缩,
     compress: true,
     open:true,
-    port:'8011'
-  }
+    port:'8011',
+    hot:true
+  },
+  target:'web' //该配置使得页面能够自动刷新
 }
