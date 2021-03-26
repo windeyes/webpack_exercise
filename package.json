@@ -32,6 +32,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
     "postcss": "^8.2.8"
   },
   "browserslist": {
